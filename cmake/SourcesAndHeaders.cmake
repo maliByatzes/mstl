@@ -1,5 +1,5 @@
 set(sources
-    src/tmp.cpp
+  src/main.cpp
 )
 
 set(exe_sources
@@ -8,10 +8,9 @@ set(exe_sources
 )
 
 set(headers
-    include/project/tmp.hpp
-    include/mstd/tmp.hpp
+    include/mstd/array/array.hpp
 )
 
 set(test_sources
-  src/tmp_test.cpp
+  src/array/array_test.cpp
 )
