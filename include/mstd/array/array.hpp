@@ -29,7 +29,7 @@ namespace mstd
     using reverse_iterator = std::reverse_iterator<iterator>;
     using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
-    value_type elems[N];  // NOLINT
+    value_type elems[N > 0 ? N : 1];  // NOLINT
 
     /*
     *****************************************

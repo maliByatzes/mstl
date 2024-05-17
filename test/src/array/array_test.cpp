@@ -64,6 +64,25 @@ TEST(ArrayTest, CheckConsDataFunc)
   ASSERT_EQ(elems.data(), &elems[0]);//NOLINT
 }
 
+TEST(ArrayTest, CheckIterators) {
+  mstd::array<int, 4> numbers{5, 2,3,4};//NOLINT
+  ASSERT_FALSE(numbers.begin() == numbers.end());
+  ASSERT_FALSE(numbers.begin() == numbers.end());
+  ASSERT_EQ(*(numbers.begin()), 5);
+  ASSERT_EQ(*(numbers.cbegin()), 5);
+}
+
+TEST(ArrayTest, CheckEmptyFunc) {
+  mstd::array<int, 4> numbers{3,1,4,1};
+  ASSERT_FALSE(numbers.empty());
+}
+
+TEST(ArrayTest, CheckSize) {
+  mstd::array<int, 4> numbers{2,3 ,4,1};
+  ASSERT_EQ(numbers.size(), 4);
+  ASSERT_EQ(numbers.max_size(), 4);
+}
+
 int main(int argc, char **argv)
 {
   ::testing::InitGoogleTest(&argc, argv);
