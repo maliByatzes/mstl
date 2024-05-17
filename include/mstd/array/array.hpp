@@ -1,6 +1,8 @@
 #pragma once
 
+#include <algorithm>
 #include <cstddef>
+#include <iterator>
 #include <stdexcept>
 #include <type_traits>
 
@@ -22,7 +24,10 @@ namespace mstd
     using const_reference = const value_type&;
     using pointer = value_type*;
     using const_pointer = const value_type*;
-    // omit iterator aliases for now
+    using iterator = value_type*;
+    using const_iterator = const value_type*;
+    using reverse_iterator = std::reverse_iterator<iterator>;
+    using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
     value_type elems[N];  // NOLINT
 
@@ -92,14 +97,112 @@ namespace mstd
 
     constexpr pointer data() noexcept
     {
-      // check if size() is zero
-      return &front();
+      // TODO: check if size() is zero
+      return static_cast<pointer>(elems);
     }
 
     constexpr const_pointer data() const
     {
-      // check if size() is zero
-      return &front();
+      // TODO: check if size() is zero
+      return static_cast<const_pointer>(elems);
+    }
+
+    /*
+    *****************************************
+    * Iterators
+    *******************************************
+    */
+
+    // return an iterator to the beginning
+
+    constexpr iterator begin() noexcept {
+      return iterator(data());
+    }
+
+    constexpr const_iterator begin() const noexcept {
+      return const_iterator(data());
+    }
+
+    constexpr const_iterator cbegin() const noexcept {
+      return const_iterator(data());
+    }
+
+    // returns an iterator to the end
+
+    constexpr iterator end() noexcept {
+      return iterator(data() + N);
+    }
+
+    constexpr const_iterator end() const noexcept {
+      return const_iterator(data() + N);
+    }
+
+    constexpr const_iterator cend() const noexcept {
+      return const_iterator(data() + N);
+    }
+
+    // returns a reverse iterator to the beginning
+
+    constexpr reverse_iterator rbegin() noexcept {
+      return reverse_iterator(end());
+    }
+
+    constexpr const_reverse_iterator rbegin() const noexcept {
+      return const_reverse_iterator(end());
+    }
+
+    constexpr const_reverse_iterator crbegin() const noexcept {
+      return const_reverse_iterator(end());
+    }
+
+    // returns a reverse iterator to the end
+
+    constexpr reverse_iterator rend() noexcept {
+      return reverse_iterator(begin());
+    }
+
+    constexpr const_reverse_iterator rend() const noexcept {
+      return const_reverse_iterator(begin());
+    }
+
+    constexpr const_reverse_iterator crend() const noexcept {
+      return const_reverse_iterator(begin());
+    }
+
+    /*
+    *****************************************
+    * Capacity
+    *******************************************
+    */
+
+    // checks whether the container is empty
+
+    [[nodiscard]] constexpr bool empty() const noexcept {
+      return begin() == end();
+    }
+
+    // returns number of elements
+
+    [[nodiscard]] constexpr size_type size() const noexcept {
+      return N;
+    }
+
+    // returns maximum number of elements
+
+    [[nodiscard]] constexpr size_type max_size() const noexcept {
+      return N;
+    }
+
+    /*
+    *****************************************
+    * Operations
+    *******************************************
+    */
+
+    // fill container with specified value
+
+    void fill(const_reference value) {
+      std::fill_n(begin(), N, value);
     }
   };
 
