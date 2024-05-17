@@ -26,7 +26,13 @@ namespace mstd
 
     value_type elems[N];  // NOLINT
 
-    // element access
+    /*
+    *****************************************
+    * Element access
+    *******************************************
+    */
+
+    // access specified element with bounds checking
 
     constexpr reference at(size_type pos)
     {
@@ -46,6 +52,8 @@ namespace mstd
       return elems[pos];
     }
 
+    // access specified element
+
     constexpr reference operator[](size_type pos)
     {
       return elems[pos];
@@ -55,6 +63,8 @@ namespace mstd
     {
       return elems[pos];
     }
+
+    // access first element
 
     constexpr reference front()
     {
@@ -66,6 +76,8 @@ namespace mstd
       return elems[0];
     }
 
+    // access last element
+
     constexpr reference back()
     {
       return elems[N - 1];
@@ -74,6 +86,20 @@ namespace mstd
     constexpr const_reference back() const
     {
       return elems[N - 1];
+    }
+
+    // direct access to the underlying contiguous storage
+
+    constexpr pointer data() noexcept
+    {
+      // check if size() is zero
+      return &front();
+    }
+
+    constexpr const_pointer data() const
+    {
+      // check if size() is zero
+      return &front();
     }
   };
 

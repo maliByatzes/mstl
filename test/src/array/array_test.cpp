@@ -42,7 +42,7 @@ TEST(ArrayTest, CheckConstFrontFunc)
 
 TEST(ArrayTest, CheckBackFunc)
 {
-  mstd::array<char, 6> letters{ 'a', 'b', 'c', 'd', 'e', 'f' }; // NOLINT
+  mstd::array<char, 6> letters{ 'a', 'b', 'c', 'd', 'e', 'f' };  // NOLINT
   ASSERT_EQ(letters.back(), 'f');
 }
 
@@ -51,6 +51,19 @@ TEST(ArrayTest, CheckConstBackFunc)
   const mstd::array<char, 6> letters{ 'a', 'b', 'c', 'd', 'e', 'f' };
   ASSERT_EQ(letters.back(), 'f');
 }
+
+TEST(ArrayTest, CheckDataFunc)
+{
+  mstd::array<int, 4> elems{ 2, 5, 8, 9 };//NOLINT
+  ASSERT_EQ(elems.data(), &elems[0]);//NOLINT
+}
+
+TEST(ArrayTest, CheckConsDataFunc)
+{
+  const mstd::array<int, 4> elems{ 2, 5, 8, 9 };//NOLINT
+  ASSERT_EQ(elems.data(), &elems[0]);//NOLINT
+}
+
 int main(int argc, char **argv)
 {
   ::testing::InitGoogleTest(&argc, argv);
