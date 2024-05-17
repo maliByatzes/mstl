@@ -115,57 +115,69 @@ namespace mstd
 
     // return an iterator to the beginning
 
-    constexpr iterator begin() noexcept {
+    constexpr iterator begin() noexcept
+    {
       return iterator(data());
     }
 
-    constexpr const_iterator begin() const noexcept {
+    constexpr const_iterator begin() const noexcept
+    {
       return const_iterator(data());
     }
 
-    constexpr const_iterator cbegin() const noexcept {
+    constexpr const_iterator cbegin() const noexcept
+    {
       return const_iterator(data());
     }
 
     // returns an iterator to the end
 
-    constexpr iterator end() noexcept {
+    constexpr iterator end() noexcept
+    {
       return iterator(data() + N);
     }
 
-    constexpr const_iterator end() const noexcept {
+    constexpr const_iterator end() const noexcept
+    {
       return const_iterator(data() + N);
     }
 
-    constexpr const_iterator cend() const noexcept {
+    constexpr const_iterator cend() const noexcept
+    {
       return const_iterator(data() + N);
     }
 
     // returns a reverse iterator to the beginning
 
-    constexpr reverse_iterator rbegin() noexcept {
+    constexpr reverse_iterator rbegin() noexcept
+    {
       return reverse_iterator(end());
     }
 
-    constexpr const_reverse_iterator rbegin() const noexcept {
+    constexpr const_reverse_iterator rbegin() const noexcept
+    {
       return const_reverse_iterator(end());
     }
 
-    constexpr const_reverse_iterator crbegin() const noexcept {
+    constexpr const_reverse_iterator crbegin() const noexcept
+    {
       return const_reverse_iterator(end());
     }
 
     // returns a reverse iterator to the end
 
-    constexpr reverse_iterator rend() noexcept {
+    constexpr reverse_iterator rend() noexcept
+    {
       return reverse_iterator(begin());
     }
 
-    constexpr const_reverse_iterator rend() const noexcept {
+    constexpr const_reverse_iterator rend() const noexcept
+    {
       return const_reverse_iterator(begin());
     }
 
-    constexpr const_reverse_iterator crend() const noexcept {
+    constexpr const_reverse_iterator crend() const noexcept
+    {
       return const_reverse_iterator(begin());
     }
 
@@ -177,19 +189,22 @@ namespace mstd
 
     // checks whether the container is empty
 
-    [[nodiscard]] constexpr bool empty() const noexcept {
+    [[nodiscard]] constexpr bool empty() const noexcept
+    {
       return begin() == end();
     }
 
     // returns number of elements
 
-    [[nodiscard]] constexpr size_type size() const noexcept {
+    [[nodiscard]] constexpr size_type size() const noexcept
+    {
       return N;
     }
 
     // returns maximum number of elements
 
-    [[nodiscard]] constexpr size_type max_size() const noexcept {
+    [[nodiscard]] constexpr size_type max_size() const noexcept
+    {
       return N;
     }
 
@@ -201,8 +216,16 @@ namespace mstd
 
     // fill container with specified value
 
-    void fill(const_reference value) {
+    void fill(const_reference value)
+    {
       std::fill_n(begin(), N, value);
+    }
+
+    // swap the contents
+
+    void swap(array& other)
+    {
+      std::swap_ranges(begin(), end(), other.begin());
     }
   };
 
