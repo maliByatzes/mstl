@@ -54,33 +54,59 @@ TEST(ArrayTest, CheckConstBackFunc)
 
 TEST(ArrayTest, CheckDataFunc)
 {
-  mstd::array<int, 4> elems{ 2, 5, 8, 9 };//NOLINT
-  ASSERT_EQ(elems.data(), &elems[0]);//NOLINT
+  mstd::array<int, 4> elems{ 2, 5, 8, 9 };  // NOLINT
+  ASSERT_EQ(elems.data(), &elems[0]);       // NOLINT
 }
 
 TEST(ArrayTest, CheckConsDataFunc)
 {
-  const mstd::array<int, 4> elems{ 2, 5, 8, 9 };//NOLINT
-  ASSERT_EQ(elems.data(), &elems[0]);//NOLINT
+  const mstd::array<int, 4> elems{ 2, 5, 8, 9 };  // NOLINT
+  ASSERT_EQ(elems.data(), &elems[0]);             // NOLINT
 }
 
-TEST(ArrayTest, CheckIterators) {
-  mstd::array<int, 4> numbers{5, 2,3,4};//NOLINT
+TEST(ArrayTest, CheckIterators)
+{
+  mstd::array<int, 4> numbers{ 5, 2, 3, 4 };  // NOLINT
   ASSERT_FALSE(numbers.begin() == numbers.end());
   ASSERT_FALSE(numbers.begin() == numbers.end());
   ASSERT_EQ(*(numbers.begin()), 5);
   ASSERT_EQ(*(numbers.cbegin()), 5);
 }
 
-TEST(ArrayTest, CheckEmptyFunc) {
-  mstd::array<int, 4> numbers{3,1,4,1};
+TEST(ArrayTest, CheckEmptyFunc)
+{
+  mstd::array<int, 4> numbers{ 3, 1, 4, 1 };
   ASSERT_FALSE(numbers.empty());
 }
 
-TEST(ArrayTest, CheckSize) {
-  mstd::array<int, 4> numbers{2,3 ,4,1};
+TEST(ArrayTest, CheckSize)
+{
+  mstd::array<int, 4> numbers{ 2, 3, 4, 1 };
   ASSERT_EQ(numbers.size(), 4);
   ASSERT_EQ(numbers.max_size(), 4);
+}
+
+TEST(ArrayTest, CheckFillFunc)
+{
+  mstd::array<char, 3> letters{};
+  letters.fill('b');
+  ASSERT_EQ(letters.at(0), 'b');
+  ASSERT_EQ(letters.at(1), 'b');
+  ASSERT_EQ(letters.at(2), 'b');
+}
+
+TEST(ArrayTest, CheckOperators) {
+  mstd::array<int, 3> alice{1, 2, 3};
+  mstd::array<int, 3> bob{7, 8, 9}; //NOLINT
+  mstd::array<int, 3> eve{1, 2, 3};
+
+  // non-equal
+  ASSERT_FALSE(alice == bob);
+  ASSERT_TRUE(alice != bob);
+
+  // equal
+  ASSERT_TRUE(alice == eve);
+  ASSERT_FALSE(alice != eve);
 }
 
 int main(int argc, char **argv)

@@ -229,4 +229,26 @@ namespace mstd
     }
   };
 
+  /*
+  *****************************************
+  * Non-member functions
+  *******************************************
+  */
+
+  // operator overloads
+
+  template<class T, std::size_t N>
+  bool operator==(const mstd::array<T, N>& lhs, const mstd::array<T, N>& rhs)
+  {
+    return lhs.size() == rhs.size() && std::equal(lhs.begin(), lhs.end(), rhs.begin());
+  }
+
+  template<class T, std::size_t N>
+  bool operator!=(const mstd::array<T, N>& lhs, const mstd::array<T, N>& rhs)
+  {
+    return lhs.size() != rhs.size() || !std::equal(lhs.begin(), lhs.end(), rhs.begin());
+  }
+
+  // other operator overloads omitted
+
 }  // namespace mstd
