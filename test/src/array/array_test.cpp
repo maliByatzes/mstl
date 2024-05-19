@@ -109,6 +109,13 @@ TEST(ArrayTest, CheckOperators) {
   ASSERT_FALSE(alice != eve);
 }
 
+TEST(ArrayTest, CheckGetFunc) {
+  mstd::array<int, 3> arr{1, 2, 3};
+  ASSERT_EQ(mstd::get<0>(arr), 1);
+  ASSERT_EQ(mstd::get<1>(arr), 2);
+  ASSERT_EQ(mstd::get<2>(arr), 3);
+}
+
 int main(int argc, char **argv)
 {
   ::testing::InitGoogleTest(&argc, argv);

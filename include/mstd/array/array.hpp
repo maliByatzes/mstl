@@ -251,4 +251,41 @@ namespace mstd
 
   // other operator overloads omitted
 
+  // accesses an element of an array
+
+  template<std::size_t I, class T, std::size_t N>
+  constexpr T& get(mstd::array<T, N>& a) noexcept  // NOLINT
+  {
+    static_assert(I < N, "array index is within bounds");
+    return a[I];
+  }
+
+  template<std::size_t I, class T, std::size_t N>
+  constexpr T&& get(mstd::array<T, N>&& a) noexcept  // NOLINT
+  {
+    static_assert(I < N, "array index is within bounds");
+    return a[I];
+  }
+
+  template<std::size_t I, class T, std::size_t N>
+  constexpr const T& get(const mstd::array<T, N>& a) noexcept  // NOLINT
+  {
+    static_assert(I < N, "array index is within bounds");
+    return a[I];
+  }
+
+  template<std::size_t I, class T, std::size_t N>
+  constexpr const T&& get(const mstd::array<T, N>&& a) noexcept  // NOLINT
+  {
+    static_assert(I < N, "array index is within bounds");
+    return a[I];
+  }
+
+  // specializes the std::swap algorithm
+
+  template< class T, std::size_t N >
+  void swap(mstd::array<T, N>& lhs, mstd::array<T, N>& rhs) {
+    lhs.swap(rhs);
+  }
+
 }  // namespace mstd
